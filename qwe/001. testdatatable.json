@@ -1,0 +1,533 @@
+{
+  "updatedAt": "2026-04-27T15:14:10.010Z",
+  "createdAt": "2026-04-27T15:14:10.010Z",
+  "id": "v4uOlcORhEKUkiOi",
+  "name": "001. testdatatable",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "table",
+        "operation": "delete",
+        "dataTableId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        }
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1,
+      "position": [
+        1664,
+        -128
+      ],
+      "id": "12697a53-f7b5-4bdc-b154-aaedcd78c1d9",
+      "name": "Drop table"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        784,
+        -128
+      ],
+      "id": "e65bf36c-9f84-42bf-b2dc-0932c3adee84",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "resource": "table",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        1136,
+        -128
+      ],
+      "id": "021dcb72-7d66-4b73-8379-abd0da2f21ab",
+      "name": "List data tables"
+    },
+    {
+      "parameters": {
+        "resource": "table",
+        "operation": "create",
+        "tableName": "={{ $('Table Name').first().json.tableName }}",
+        "columns": {
+          "column": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "number",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        1840,
+        -128
+      ],
+      "id": "4c448fd7-60eb-42b6-9de0-9b8f49332f99",
+      "name": "Create a data table"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fab375f2-541c-415f-a103-6307f6c8d4d2",
+              "name": "tableName",
+              "value": "={{ $workflow.name.replace(/^\\d+.\\s*/, '').trim() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        960,
+        -128
+      ],
+      "id": "667f3543-9fd6-49ea-a366-fe719c67a7bd",
+      "name": "Table Name"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "c6a37662-e246-40e7-9139-4c4b1b574658",
+              "leftValue": "={{ Object.keys($json).length }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1488,
+        -128
+      ],
+      "id": "86f71014-df0a-4434-81f4-2a65596f7d94",
+      "name": "Table Exists",
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "40a2f4cb-91b3-476f-9f2c-ca030eeaa5d4",
+              "leftValue": "={{ $json.name }}",
+              "rightValue": "={{ $('Table Name').first().json.tableName }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.3,
+      "position": [
+        1312,
+        -128
+      ],
+      "id": "eddc5748-a6ed-4386-99de-edba333d5fe8",
+      "name": "Filter",
+      "alwaysOutputData": true
+    }
+  ],
+  "connections": {
+    "Drop table": {
+      "main": [
+        [
+          {
+            "node": "Create a data table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Table Name",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "List data tables": {
+      "main": [
+        [
+          {
+            "node": "Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Table Name": {
+      "main": [
+        [
+          {
+            "node": "List data tables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Table Exists": {
+      "main": [
+        [
+          {
+            "node": "Drop table",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Create a data table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter": {
+      "main": [
+        [
+          {
+            "node": "Table Exists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "versionId": "4ff99e82-55f0-48c5-be5c-28470d9882b2",
+  "activeVersionId": "4ff99e82-55f0-48c5-be5c-28470d9882b2",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-04-27T15:14:10.013Z",
+      "createdAt": "2026-04-27T15:14:10.013Z",
+      "role": "workflow:owner",
+      "workflowId": "v4uOlcORhEKUkiOi",
+      "projectId": "FxOoquLycDnZ2gOx"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2026-04-27T15:14:10.014Z",
+    "createdAt": "2026-04-27T15:14:10.014Z",
+    "versionId": "4ff99e82-55f0-48c5-be5c-28470d9882b2",
+    "workflowId": "v4uOlcORhEKUkiOi",
+    "nodes": [
+      {
+        "parameters": {
+          "resource": "table",
+          "operation": "delete",
+          "dataTableId": {
+            "__rl": true,
+            "value": "={{ $json.id }}",
+            "mode": "id"
+          }
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1,
+        "position": [
+          1664,
+          -128
+        ],
+        "id": "12697a53-f7b5-4bdc-b154-aaedcd78c1d9",
+        "name": "Drop table"
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          784,
+          -128
+        ],
+        "id": "e65bf36c-9f84-42bf-b2dc-0932c3adee84",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "resource": "table",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          1136,
+          -128
+        ],
+        "id": "021dcb72-7d66-4b73-8379-abd0da2f21ab",
+        "name": "List data tables"
+      },
+      {
+        "parameters": {
+          "resource": "table",
+          "operation": "create",
+          "tableName": "={{ $('Table Name').first().json.tableName }}",
+          "columns": {
+            "column": [
+              {
+                "name": "name"
+              },
+              {
+                "name": "number",
+                "type": "number"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          1840,
+          -128
+        ],
+        "id": "4c448fd7-60eb-42b6-9de0-9b8f49332f99",
+        "name": "Create a data table"
+      },
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "fab375f2-541c-415f-a103-6307f6c8d4d2",
+                "name": "tableName",
+                "value": "={{ $workflow.name.replace(/^\\d+.\\s*/, '').trim() }}",
+                "type": "string"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          960,
+          -128
+        ],
+        "id": "667f3543-9fd6-49ea-a366-fe719c67a7bd",
+        "name": "Table Name"
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "c6a37662-e246-40e7-9139-4c4b1b574658",
+                "leftValue": "={{ Object.keys($json).length }}",
+                "rightValue": 0,
+                "operator": {
+                  "type": "number",
+                  "operation": "gt"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.if",
+        "typeVersion": 2.3,
+        "position": [
+          1488,
+          -128
+        ],
+        "id": "86f71014-df0a-4434-81f4-2a65596f7d94",
+        "name": "Table Exists",
+        "executeOnce": true
+      },
+      {
+        "parameters": {
+          "conditions": {
+            "options": {
+              "caseSensitive": true,
+              "leftValue": "",
+              "typeValidation": "strict",
+              "version": 3
+            },
+            "conditions": [
+              {
+                "id": "40a2f4cb-91b3-476f-9f2c-ca030eeaa5d4",
+                "leftValue": "={{ $json.name }}",
+                "rightValue": "={{ $('Table Name').first().json.tableName }}",
+                "operator": {
+                  "type": "string",
+                  "operation": "equals",
+                  "name": "filter.operator.equals"
+                }
+              }
+            ],
+            "combinator": "and"
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.filter",
+        "typeVersion": 2.3,
+        "position": [
+          1312,
+          -128
+        ],
+        "id": "eddc5748-a6ed-4386-99de-edba333d5fe8",
+        "name": "Filter",
+        "alwaysOutputData": true
+      }
+    ],
+    "connections": {
+      "Drop table": {
+        "main": [
+          [
+            {
+              "node": "Create a data table",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Table Name",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "List data tables": {
+        "main": [
+          [
+            {
+              "node": "Filter",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Table Name": {
+        "main": [
+          [
+            {
+              "node": "List data tables",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Table Exists": {
+        "main": [
+          [
+            {
+              "node": "Drop table",
+              "type": "main",
+              "index": 0
+            }
+          ],
+          [
+            {
+              "node": "Create a data table",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Filter": {
+        "main": [
+          [
+            {
+              "node": "Table Exists",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Illia Shuklin",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "tags": [
+    {
+      "updatedAt": "2026-01-17T18:50:06.826Z",
+      "createdAt": "2026-01-17T18:50:06.826Z",
+      "id": "PvG3HklHEMYYZ0pA",
+      "name": "migrate"
+    },
+    {
+      "updatedAt": "2025-12-23T21:15:29.561Z",
+      "createdAt": "2025-12-23T21:09:47.305Z",
+      "id": "Q7WE2YNv4dUF6zIB",
+      "name": "git"
+    }
+  ]
+}
