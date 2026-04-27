@@ -1,0 +1,156 @@
+{
+  "updatedAt": "2026-04-27T12:03:05.569Z",
+  "createdAt": "2026-04-27T12:02:25.171Z",
+  "id": "nsVr2D5GziH2INGO",
+  "name": "qwe. workflow2",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "53a07c90-7c19-4f4a-88a0-da34a1463702",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "OlyK2k8YPhewreS8",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/OlyK2k8YPhewreS8",
+          "cachedResultName": "qwe. testworkflow"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "2f008afb-02d8-465a-a8f2-479792a8ea3d",
+      "name": "Call 'qwe. testworkflow'"
+    }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Call 'qwe. testworkflow'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "staticData": null,
+  "meta": null,
+  "versionId": "7c5f6f28-370a-4b22-9a9c-7a97c44cec43",
+  "activeVersionId": "7c5f6f28-370a-4b22-9a9c-7a97c44cec43",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-04-27T12:02:25.174Z",
+      "createdAt": "2026-04-27T12:02:25.174Z",
+      "role": "workflow:owner",
+      "workflowId": "nsVr2D5GziH2INGO",
+      "projectId": "FxOoquLycDnZ2gOx"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2026-04-27T12:03:16.000Z",
+    "createdAt": "2026-04-27T12:03:05.664Z",
+    "versionId": "7c5f6f28-370a-4b22-9a9c-7a97c44cec43",
+    "workflowId": "nsVr2D5GziH2INGO",
+    "nodes": [
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "53a07c90-7c19-4f4a-88a0-da34a1463702",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "OlyK2k8YPhewreS8",
+            "mode": "list",
+            "cachedResultUrl": "/workflow/OlyK2k8YPhewreS8",
+            "cachedResultName": "qwe. testworkflow"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.3,
+        "position": [
+          208,
+          0
+        ],
+        "id": "2f008afb-02d8-465a-a8f2-479792a8ea3d",
+        "name": "Call 'qwe. testworkflow'"
+      }
+    ],
+    "connections": {
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Call 'qwe. testworkflow'",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Illia Shuklin",
+    "name": "Version 7c5f6f28",
+    "description": "",
+    "autosaved": true
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-12-23T21:15:29.561Z",
+      "createdAt": "2025-12-23T21:09:47.305Z",
+      "id": "Q7WE2YNv4dUF6zIB",
+      "name": "git"
+    }
+  ]
+}
