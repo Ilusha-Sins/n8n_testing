@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-04-27T14:03:32.037Z",
-  "createdAt": "2026-04-27T14:03:32.037Z",
-  "id": "geRvrEzBNmgWkja1",
+  "updatedAt": "2026-04-27T14:51:45.723Z",
+  "createdAt": "2026-04-27T14:49:21.946Z",
+  "id": "Ffx4R4GqHpPEUJFf",
   "name": "zxc. test1",
   "active": true,
   "isArchived": false,
@@ -26,15 +26,39 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        208,
+        416,
         0
       ],
       "id": "6dd78744-52a0-4f8c-9980-1d60e4115360",
       "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ],
+      "id": "8c27eac0-87f3-4dac-aedc-d4aec3f43230",
+      "name": "Code in JavaScript"
     }
   ],
   "connections": {
     "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
       "main": [
         [
           {
@@ -47,27 +71,28 @@
     }
   },
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate"
   },
   "staticData": null,
   "meta": null,
-  "versionId": "a860df80-13a5-4b1a-ba11-0311b5824879",
-  "activeVersionId": "a860df80-13a5-4b1a-ba11-0311b5824879",
+  "versionId": "28837a74-a4b8-4ac0-a27e-5e366aeb9668",
+  "activeVersionId": "28837a74-a4b8-4ac0-a27e-5e366aeb9668",
   "triggerCount": 0,
   "shared": [
     {
-      "updatedAt": "2026-04-27T14:03:32.038Z",
-      "createdAt": "2026-04-27T14:03:32.038Z",
+      "updatedAt": "2026-04-27T14:49:21.947Z",
+      "createdAt": "2026-04-27T14:49:21.947Z",
       "role": "workflow:owner",
-      "workflowId": "geRvrEzBNmgWkja1",
+      "workflowId": "Ffx4R4GqHpPEUJFf",
       "projectId": "FxOoquLycDnZ2gOx"
     }
   ],
   "activeVersion": {
-    "updatedAt": "2026-04-27T14:03:32.039Z",
-    "createdAt": "2026-04-27T14:03:32.039Z",
-    "versionId": "a860df80-13a5-4b1a-ba11-0311b5824879",
-    "workflowId": "geRvrEzBNmgWkja1",
+    "updatedAt": "2026-04-27T14:51:57.000Z",
+    "createdAt": "2026-04-27T14:51:45.895Z",
+    "versionId": "28837a74-a4b8-4ac0-a27e-5e366aeb9668",
+    "workflowId": "Ffx4R4GqHpPEUJFf",
     "nodes": [
       {
         "parameters": {
@@ -89,15 +114,39 @@
         "type": "n8n-nodes-base.set",
         "typeVersion": 3.4,
         "position": [
-          208,
+          416,
           0
         ],
         "id": "6dd78744-52a0-4f8c-9980-1d60e4115360",
         "name": "Edit Fields"
+      },
+      {
+        "parameters": {
+          "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+        },
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          208,
+          0
+        ],
+        "id": "8c27eac0-87f3-4dac-aedc-d4aec3f43230",
+        "name": "Code in JavaScript"
       }
     ],
     "connections": {
       "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Code in JavaScript",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Code in JavaScript": {
         "main": [
           [
             {
@@ -110,9 +159,9 @@
       }
     },
     "authors": "Illia Shuklin",
-    "name": null,
-    "description": null,
-    "autosaved": false
+    "name": "Version 28837a74",
+    "description": "",
+    "autosaved": true
   },
   "tags": [
     {
