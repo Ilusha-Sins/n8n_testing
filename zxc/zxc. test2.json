@@ -1,0 +1,125 @@
+{
+  "updatedAt": "2026-04-27T14:03:31.988Z",
+  "createdAt": "2026-04-27T14:03:31.988Z",
+  "id": "cqT1Y1KC8YO56bld",
+  "name": "zxc. test2",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "89cc00b0-c212-47ec-bc19-5eac1d818a63",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6dd78744-52a0-4f8c-9980-1d60e4115360",
+      "name": "Edit Fields"
+    }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "meta": null,
+  "versionId": "ea208dc7-04ae-4bec-8b96-19e4cad3f2d1",
+  "activeVersionId": "ea208dc7-04ae-4bec-8b96-19e4cad3f2d1",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-04-27T14:03:31.990Z",
+      "createdAt": "2026-04-27T14:03:31.990Z",
+      "role": "workflow:owner",
+      "workflowId": "cqT1Y1KC8YO56bld",
+      "projectId": "FxOoquLycDnZ2gOx"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2026-04-27T14:03:31.990Z",
+    "createdAt": "2026-04-27T14:03:31.990Z",
+    "versionId": "ea208dc7-04ae-4bec-8b96-19e4cad3f2d1",
+    "workflowId": "cqT1Y1KC8YO56bld",
+    "nodes": [
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "89cc00b0-c212-47ec-bc19-5eac1d818a63",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          208,
+          0
+        ],
+        "id": "6dd78744-52a0-4f8c-9980-1d60e4115360",
+        "name": "Edit Fields"
+      }
+    ],
+    "connections": {
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Illia Shuklin",
+    "name": null,
+    "description": null,
+    "autosaved": false
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-12-23T21:15:29.561Z",
+      "createdAt": "2025-12-23T21:09:47.305Z",
+      "id": "Q7WE2YNv4dUF6zIB",
+      "name": "git"
+    }
+  ]
+}
