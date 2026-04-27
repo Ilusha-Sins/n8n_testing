@@ -1,7 +1,7 @@
 {
-  "updatedAt": "2026-04-27T14:03:31.988Z",
-  "createdAt": "2026-04-27T14:03:31.988Z",
-  "id": "cqT1Y1KC8YO56bld",
+  "updatedAt": "2026-04-27T14:49:21.842Z",
+  "createdAt": "2026-04-27T14:49:21.842Z",
+  "id": "Z8xjmPfKKHPOEz4E",
   "name": "zxc. test2",
   "active": true,
   "isArchived": false,
@@ -51,23 +51,23 @@
   },
   "staticData": null,
   "meta": null,
-  "versionId": "ea208dc7-04ae-4bec-8b96-19e4cad3f2d1",
-  "activeVersionId": "ea208dc7-04ae-4bec-8b96-19e4cad3f2d1",
+  "versionId": "4d4eaec0-6dfe-4fcf-9a17-fa9bf26d74cf",
+  "activeVersionId": "4d4eaec0-6dfe-4fcf-9a17-fa9bf26d74cf",
   "triggerCount": 0,
   "shared": [
     {
-      "updatedAt": "2026-04-27T14:03:31.990Z",
-      "createdAt": "2026-04-27T14:03:31.990Z",
+      "updatedAt": "2026-04-27T14:49:21.844Z",
+      "createdAt": "2026-04-27T14:49:21.844Z",
       "role": "workflow:owner",
-      "workflowId": "cqT1Y1KC8YO56bld",
+      "workflowId": "Z8xjmPfKKHPOEz4E",
       "projectId": "FxOoquLycDnZ2gOx"
     }
   ],
   "activeVersion": {
-    "updatedAt": "2026-04-27T14:03:31.990Z",
-    "createdAt": "2026-04-27T14:03:31.990Z",
-    "versionId": "ea208dc7-04ae-4bec-8b96-19e4cad3f2d1",
-    "workflowId": "cqT1Y1KC8YO56bld",
+    "updatedAt": "2026-04-27T14:49:21.845Z",
+    "createdAt": "2026-04-27T14:49:21.845Z",
+    "versionId": "4d4eaec0-6dfe-4fcf-9a17-fa9bf26d74cf",
+    "workflowId": "Z8xjmPfKKHPOEz4E",
     "nodes": [
       {
         "parameters": {
