@@ -1,0 +1,159 @@
+{
+  "updatedAt": "2026-04-27T12:01:47.280Z",
+  "createdAt": "2026-04-27T11:49:18.120Z",
+  "id": "OlyK2k8YPhewreS8",
+  "name": "qwe. testworkflow",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "9282dc68-70f7-4951-96e6-e0b73f6fca6f",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "dc2d19c3-be56-4997-80d7-0dfef2d253e5",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "url": "google.com",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "httpBearerAuth",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        208,
+        0
+      ],
+      "id": "8b7c0ad0-e3e5-4a53-8788-8678fc7adaee",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "2oGw5IL0R7D01ovg",
+          "name": "Bearer Auth account 3"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "staticData": null,
+  "meta": null,
+  "versionId": "e061cf9d-62c7-4fd2-b907-cf1bec0fcedd",
+  "activeVersionId": "7bf605e3-2e2e-4613-a8c3-533121a2ad4d",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-04-27T11:49:18.127Z",
+      "createdAt": "2026-04-27T11:49:18.127Z",
+      "role": "workflow:owner",
+      "workflowId": "OlyK2k8YPhewreS8",
+      "projectId": "FxOoquLycDnZ2gOx"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2026-04-27T11:51:10.000Z",
+    "createdAt": "2026-04-27T11:51:01.726Z",
+    "versionId": "7bf605e3-2e2e-4613-a8c3-533121a2ad4d",
+    "workflowId": "OlyK2k8YPhewreS8",
+    "nodes": [
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "9282dc68-70f7-4951-96e6-e0b73f6fca6f",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          208,
+          0
+        ],
+        "id": "dc2d19c3-be56-4997-80d7-0dfef2d253e5",
+        "name": "Edit Fields"
+      }
+    ],
+    "connections": {
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Edit Fields",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Illia Shuklin",
+    "name": "Version 7bf605e3",
+    "description": "",
+    "autosaved": true
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-12-23T21:15:29.561Z",
+      "createdAt": "2025-12-23T21:09:47.305Z",
+      "id": "Q7WE2YNv4dUF6zIB",
+      "name": "git"
+    }
+  ]
+}
