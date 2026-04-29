@@ -1,0 +1,174 @@
+{
+  "updatedAt": "2026-04-29T10:07:28.800Z",
+  "createdAt": "2026-04-29T09:21:10.190Z",
+  "id": "Nk1sQkS6L5wu6xfo",
+  "name": "tst. app",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 1
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e8c07def-013a-494a-9212-c7dc8a360319",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "95RZD3WiNxpd95kR",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/95RZD3WiNxpd95kR",
+          "cachedResultName": "tst. app1"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "1bbbad1a-20c3-45cb-9601-bff15791b165",
+      "name": "Call 'tst. app1'"
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Call 'tst. app1'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    }
+  },
+  "meta": null,
+  "versionId": "ce9b4e3a-6370-4d2f-8de6-219a21ea684e",
+  "activeVersionId": "ce9b4e3a-6370-4d2f-8de6-219a21ea684e",
+  "triggerCount": 1,
+  "shared": [
+    {
+      "updatedAt": "2026-04-29T09:21:10.191Z",
+      "createdAt": "2026-04-29T09:21:10.191Z",
+      "role": "workflow:owner",
+      "workflowId": "Nk1sQkS6L5wu6xfo",
+      "projectId": "FxOoquLycDnZ2gOx"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2026-04-29T10:07:31.000Z",
+    "createdAt": "2026-04-29T09:42:45.048Z",
+    "versionId": "ce9b4e3a-6370-4d2f-8de6-219a21ea684e",
+    "workflowId": "Nk1sQkS6L5wu6xfo",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "minutes",
+                "minutesInterval": 1
+              }
+            ]
+          }
+        },
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1.3,
+        "position": [
+          0,
+          0
+        ],
+        "id": "e8c07def-013a-494a-9212-c7dc8a360319",
+        "name": "Schedule Trigger"
+      },
+      {
+        "parameters": {
+          "workflowId": {
+            "__rl": true,
+            "value": "95RZD3WiNxpd95kR",
+            "mode": "list",
+            "cachedResultUrl": "/workflow/95RZD3WiNxpd95kR",
+            "cachedResultName": "tst. app1"
+          },
+          "workflowInputs": {
+            "mappingMode": "defineBelow",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": true
+          },
+          "options": {}
+        },
+        "type": "n8n-nodes-base.executeWorkflow",
+        "typeVersion": 1.3,
+        "position": [
+          208,
+          0
+        ],
+        "id": "1bbbad1a-20c3-45cb-9601-bff15791b165",
+        "name": "Call 'tst. app1'"
+      }
+    ],
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Call 'tst. app1'",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Illia Shuklin",
+    "name": "Version ce9b4e3a",
+    "description": "",
+    "autosaved": true
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-12-23T21:15:29.561Z",
+      "createdAt": "2025-12-23T21:09:47.305Z",
+      "id": "Q7WE2YNv4dUF6zIB",
+      "name": "git"
+    }
+  ]
+}
