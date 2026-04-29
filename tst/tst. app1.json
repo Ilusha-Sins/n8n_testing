@@ -1,0 +1,584 @@
+{
+  "updatedAt": "2026-04-29T10:07:45.903Z",
+  "createdAt": "2026-04-29T09:21:10.236Z",
+  "id": "95RZD3WiNxpd95kR",
+  "name": "tst. app1",
+  "active": true,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      caller_workflow: 'Demo App - Caller Workflow for Bearer API Logger',\n      caller_run_id: `caller_${Date.now()}`,\n      message: 'Parent workflow is calling the Bearer API Logger workflow',\n      started_at: new Date().toISOString()\n    }\n  }\n];"
+      },
+      "id": "41ef517b-f3d6-4f41-bb72-2a77e988436a",
+      "name": "Prepare Call Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        496,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      ok: true,\n      message: 'Parent workflow successfully called the child workflow',\n      child_workflow_result: $json,\n      parent_finished_at: new Date().toISOString()\n    }\n  }\n];"
+      },
+      "id": "911d3696-bd16-41e2-8e8f-15270a85d686",
+      "name": "Return Parent Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1056,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      run_id: `bearer_demo_${Date.now()}`,\n      api_service: 'httpbin_bearer_demo_api',\n      request_url: 'https://httpbin.org/bearer',\n      created_at: new Date().toISOString()\n    }\n  }\n];"
+      },
+      "id": "01b8ecfe-bc1e-429a-b5bd-d07af5245b4e",
+      "name": "Prepare API Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        528,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.request_url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBearerAuth",
+        "options": {}
+      },
+      "id": "7ca14f37-a7fd-465c-8f08-b8b034a845a6",
+      "name": "Call Demo API With Bearer Credential",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        816,
+        -160
+      ],
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "KurJSVfWMCuegZSy",
+          "name": "Bearer Auth account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const apiResponse = $json;\nconst requestData = $('Prepare API Request').first().json;\n\nconst authenticated = apiResponse.authenticated === true;\nconst tokenWasReceived = Boolean(apiResponse.token);\n\nreturn [\n  {\n    json: {\n      run_id: requestData.run_id,\n      api_service: requestData.api_service,\n      request_url: requestData.request_url,\n      auth_result: authenticated ? 'success' : 'failed',\n      api_authenticated: authenticated,\n      token_received_by_api: tokenWasReceived,\n      message: authenticated\n        ? 'Demo API accepted the Bearer credential from n8n'\n        : 'Demo API did not accept the Bearer credential',\n      created_at: requestData.created_at\n    }\n  }\n];"
+      },
+      "id": "ca19c44c-cf6a-4deb-b285-c4e138c6e393",
+      "name": "Prepare Data Table Row",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1088,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "dataTableId": {
+          "__rl": true,
+          "value": "demo_bearer_api_logs",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "b0791549-12e5-445c-8cc2-5f9c5a82ea6c",
+      "name": "Insert Row Into Data Table",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        1376,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      ok: $json.api_authenticated,\n      message: 'Demo workflow finished. API response was saved into Data Table.',\n      table_name: 'demo_bearer_api_logs',\n      run_id: $json.run_id,\n      auth_result: $json.auth_result,\n      api_authenticated: $json.api_authenticated,\n      saved_at: new Date().toISOString()\n    }\n  }\n];"
+      },
+      "id": "24ec3df5-7735-48d0-9727-434d12c0ee07",
+      "name": "Return Demo Result",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1648,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "table",
+        "operation": "create",
+        "tableName": "demo_bearer_api_logs",
+        "columns": {
+          "column": [
+            {
+              "name": "run_id"
+            },
+            {
+              "name": "api_service"
+            },
+            {
+              "name": "request_url"
+            },
+            {
+              "name": "auth_result"
+            },
+            {
+              "name": "api_authenticated",
+              "type": "boolean"
+            },
+            {
+              "name": "token_received_by_api",
+              "type": "boolean"
+            },
+            {
+              "name": "message"
+            },
+            {
+              "name": "created_at",
+              "type": "date"
+            }
+          ]
+        },
+        "options": {
+          "createIfNotExists": true
+        }
+      },
+      "id": "ac090fcf-511a-446b-bb08-910ad8322618",
+      "name": "Create or Reuse Data Table",
+      "type": "n8n-nodes-base.dataTable",
+      "typeVersion": 1.1,
+      "position": [
+        368,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "fc24825f-15fd-4dab-b2f8-e25f0219c9c0",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "connections": {
+    "Prepare Call Data": {
+      "main": [
+        [
+          {
+            "node": "Create or Reuse Data Table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare API Request": {
+      "main": [
+        [
+          {
+            "node": "Call Demo API With Bearer Credential",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Demo API With Bearer Credential": {
+      "main": [
+        [
+          {
+            "node": "Prepare Data Table Row",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Data Table Row": {
+      "main": [
+        [
+          {
+            "node": "Insert Row Into Data Table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Row Into Data Table": {
+      "main": [
+        [
+          {
+            "node": "Return Demo Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create or Reuse Data Table": {
+      "main": [
+        [
+          {
+            "node": "Prepare API Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Return Demo Result": {
+      "main": [
+        [
+          {
+            "node": "Return Parent Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Prepare Call Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "timeSavedMode": "fixed",
+    "callerPolicy": "workflowsFromSameOwner",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "meta": null,
+  "versionId": "67813182-1276-40a4-8d3f-9537cd1fcd93",
+  "activeVersionId": "67813182-1276-40a4-8d3f-9537cd1fcd93",
+  "triggerCount": 0,
+  "shared": [
+    {
+      "updatedAt": "2026-04-29T09:21:10.238Z",
+      "createdAt": "2026-04-29T09:21:10.238Z",
+      "role": "workflow:owner",
+      "workflowId": "95RZD3WiNxpd95kR",
+      "projectId": "FxOoquLycDnZ2gOx"
+    }
+  ],
+  "activeVersion": {
+    "updatedAt": "2026-04-29T09:43:00.000Z",
+    "createdAt": "2026-04-29T09:39:46.260Z",
+    "versionId": "67813182-1276-40a4-8d3f-9537cd1fcd93",
+    "workflowId": "95RZD3WiNxpd95kR",
+    "nodes": [
+      {
+        "parameters": {
+          "jsCode": "return [\n  {\n    json: {\n      caller_workflow: 'Demo App - Caller Workflow for Bearer API Logger',\n      caller_run_id: `caller_${Date.now()}`,\n      message: 'Parent workflow is calling the Bearer API Logger workflow',\n      started_at: new Date().toISOString()\n    }\n  }\n];"
+        },
+        "id": "41ef517b-f3d6-4f41-bb72-2a77e988436a",
+        "name": "Prepare Call Data",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          496,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "return [\n  {\n    json: {\n      ok: true,\n      message: 'Parent workflow successfully called the child workflow',\n      child_workflow_result: $json,\n      parent_finished_at: new Date().toISOString()\n    }\n  }\n];"
+        },
+        "id": "911d3696-bd16-41e2-8e8f-15270a85d686",
+        "name": "Return Parent Result",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1056,
+          0
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "return [\n  {\n    json: {\n      run_id: `bearer_demo_${Date.now()}`,\n      api_service: 'httpbin_bearer_demo_api',\n      request_url: 'https://httpbin.org/bearer',\n      created_at: new Date().toISOString()\n    }\n  }\n];"
+        },
+        "id": "01b8ecfe-bc1e-429a-b5bd-d07af5245b4e",
+        "name": "Prepare API Request",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          528,
+          -160
+        ]
+      },
+      {
+        "parameters": {
+          "url": "={{ $json.request_url }}",
+          "authentication": "genericCredentialType",
+          "genericAuthType": "httpBearerAuth",
+          "options": {}
+        },
+        "id": "7ca14f37-a7fd-465c-8f08-b8b034a845a6",
+        "name": "Call Demo API With Bearer Credential",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 4.2,
+        "position": [
+          816,
+          -160
+        ],
+        "credentials": {
+          "httpBearerAuth": {
+            "id": "KurJSVfWMCuegZSy",
+            "name": "Bearer Auth account 3"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "jsCode": "const apiResponse = $json;\nconst requestData = $('Prepare API Request').first().json;\n\nconst authenticated = apiResponse.authenticated === true;\nconst tokenWasReceived = Boolean(apiResponse.token);\n\nreturn [\n  {\n    json: {\n      run_id: requestData.run_id,\n      api_service: requestData.api_service,\n      request_url: requestData.request_url,\n      auth_result: authenticated ? 'success' : 'failed',\n      api_authenticated: authenticated,\n      token_received_by_api: tokenWasReceived,\n      message: authenticated\n        ? 'Demo API accepted the Bearer credential from n8n'\n        : 'Demo API did not accept the Bearer credential',\n      created_at: requestData.created_at\n    }\n  }\n];"
+        },
+        "id": "ca19c44c-cf6a-4deb-b285-c4e138c6e393",
+        "name": "Prepare Data Table Row",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1088,
+          -160
+        ]
+      },
+      {
+        "parameters": {
+          "dataTableId": {
+            "__rl": true,
+            "value": "demo_bearer_api_logs",
+            "mode": "name"
+          },
+          "columns": {
+            "mappingMode": "autoMapInputData",
+            "value": {},
+            "matchingColumns": [],
+            "schema": [],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "id": "b0791549-12e5-445c-8cc2-5f9c5a82ea6c",
+        "name": "Insert Row Into Data Table",
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          1376,
+          -160
+        ]
+      },
+      {
+        "parameters": {
+          "jsCode": "return [\n  {\n    json: {\n      ok: $json.api_authenticated,\n      message: 'Demo workflow finished. API response was saved into Data Table.',\n      table_name: 'demo_bearer_api_logs',\n      run_id: $json.run_id,\n      auth_result: $json.auth_result,\n      api_authenticated: $json.api_authenticated,\n      saved_at: new Date().toISOString()\n    }\n  }\n];"
+        },
+        "id": "24ec3df5-7735-48d0-9727-434d12c0ee07",
+        "name": "Return Demo Result",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [
+          1648,
+          -160
+        ]
+      },
+      {
+        "parameters": {
+          "resource": "table",
+          "operation": "create",
+          "tableName": "demo_bearer_api_logs",
+          "columns": {
+            "column": [
+              {
+                "name": "run_id"
+              },
+              {
+                "name": "api_service"
+              },
+              {
+                "name": "request_url"
+              },
+              {
+                "name": "auth_result"
+              },
+              {
+                "name": "api_authenticated",
+                "type": "boolean"
+              },
+              {
+                "name": "token_received_by_api",
+                "type": "boolean"
+              },
+              {
+                "name": "message"
+              },
+              {
+                "name": "created_at",
+                "type": "date"
+              }
+            ]
+          },
+          "options": {
+            "createIfNotExists": true
+          }
+        },
+        "id": "ac090fcf-511a-446b-bb08-910ad8322618",
+        "name": "Create or Reuse Data Table",
+        "type": "n8n-nodes-base.dataTable",
+        "typeVersion": 1.1,
+        "position": [
+          368,
+          -160
+        ]
+      },
+      {
+        "parameters": {
+          "inputSource": "passthrough"
+        },
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          0,
+          0
+        ],
+        "id": "fc24825f-15fd-4dab-b2f8-e25f0219c9c0",
+        "name": "When Executed by Another Workflow"
+      }
+    ],
+    "connections": {
+      "Prepare Call Data": {
+        "main": [
+          [
+            {
+              "node": "Create or Reuse Data Table",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Prepare API Request": {
+        "main": [
+          [
+            {
+              "node": "Call Demo API With Bearer Credential",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Call Demo API With Bearer Credential": {
+        "main": [
+          [
+            {
+              "node": "Prepare Data Table Row",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Prepare Data Table Row": {
+        "main": [
+          [
+            {
+              "node": "Insert Row Into Data Table",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Insert Row Into Data Table": {
+        "main": [
+          [
+            {
+              "node": "Return Demo Result",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Create or Reuse Data Table": {
+        "main": [
+          [
+            {
+              "node": "Prepare API Request",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Return Demo Result": {
+        "main": [
+          [
+            {
+              "node": "Return Parent Result",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Prepare Call Data",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "authors": "Illia Shuklin",
+    "name": "Version 67813182",
+    "description": "",
+    "autosaved": true
+  },
+  "tags": [
+    {
+      "updatedAt": "2025-12-23T21:15:29.561Z",
+      "createdAt": "2025-12-23T21:09:47.305Z",
+      "id": "Q7WE2YNv4dUF6zIB",
+      "name": "git"
+    }
+  ],
+  "gitSync": {
+    "errorWorkflowName": "tst. Error"
+  }
+}
