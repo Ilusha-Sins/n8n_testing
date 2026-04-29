@@ -1,11 +1,5 @@
 {
-  "updatedAt": "2026-04-27T15:13:35.149Z",
-  "createdAt": "2026-04-27T15:13:35.149Z",
-  "id": "7Z7B436uKfQ1Lhqc",
   "name": "Bearer Auth account 3",
-  "description": null,
-  "active": true,
-  "isArchived": false,
   "nodes": [
     {
       "parameters": {
@@ -26,7 +20,7 @@
         "operation": "create",
         "name": "Bearer Auth account 3",
         "credentialTypeName": "httpBearerAuth",
-        "data": {},
+        "data": "{}",
         "requestOptions": {}
       },
       "type": "n8n-nodes-base.n8n",
@@ -39,12 +33,13 @@
       "name": "Create a credential",
       "credentials": {
         "n8nApi": {
-          "id": "wZ0Dv7o29bwVycJz",
-          "name": "n8n account 7"
+          "id": "",
+          "name": ""
         }
       }
     }
   ],
+  "pinData": {},
   "connections": {
     "When Executed by Another Workflow": {
       "main": [
@@ -58,135 +53,17 @@
       ]
     }
   },
+  "active": true,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate"
   },
-  "staticData": null,
-  "meta": null,
-  "pinData": null,
-  "versionId": "972260f4-a9ae-4636-bd4d-d7f6a8328309",
-  "activeVersionId": "972260f4-a9ae-4636-bd4d-d7f6a8328309",
-  "versionCounter": 6,
-  "triggerCount": 0,
-  "shared": [
-    {
-      "updatedAt": "2026-04-27T15:13:35.151Z",
-      "createdAt": "2026-04-27T15:13:35.151Z",
-      "role": "workflow:owner",
-      "workflowId": "7Z7B436uKfQ1Lhqc",
-      "projectId": "FxOoquLycDnZ2gOx",
-      "project": {
-        "updatedAt": "2026-03-17T06:09:02.827Z",
-        "createdAt": "2026-03-16T18:45:18.972Z",
-        "id": "FxOoquLycDnZ2gOx",
-        "name": "Illia Shuklin <illia.qa@ask24.ai>",
-        "type": "personal",
-        "icon": null,
-        "description": null,
-        "creatorId": "7552bc39-732c-4660-a223-29e49d86f0a6"
-      }
-    }
-  ],
   "tags": [
     {
-      "updatedAt": "2026-01-17T18:50:06.826Z",
-      "createdAt": "2026-01-17T18:50:06.826Z",
-      "id": "PvG3HklHEMYYZ0pA",
-      "name": "migrate"
+      "name": "git"
     },
     {
-      "updatedAt": "2025-12-23T21:15:29.561Z",
-      "createdAt": "2025-12-23T21:09:47.305Z",
-      "id": "Q7WE2YNv4dUF6zIB",
-      "name": "git"
+      "name": "migrate"
     }
-  ],
-  "activeVersion": {
-    "updatedAt": "2026-04-27T15:13:35.151Z",
-    "createdAt": "2026-04-27T15:13:35.151Z",
-    "versionId": "972260f4-a9ae-4636-bd4d-d7f6a8328309",
-    "workflowId": "7Z7B436uKfQ1Lhqc",
-    "nodes": [
-      {
-        "parameters": {
-          "inputSource": "passthrough"
-        },
-        "type": "n8n-nodes-base.executeWorkflowTrigger",
-        "typeVersion": 1.1,
-        "position": [
-          0,
-          0
-        ],
-        "id": "4697e536-ffcb-4de9-9f0d-6dc701152868",
-        "name": "When Executed by Another Workflow"
-      },
-      {
-        "parameters": {
-          "resource": "credential",
-          "operation": "create",
-          "name": "Bearer Auth account 3",
-          "credentialTypeName": "httpBearerAuth",
-          "data": {},
-          "requestOptions": {}
-        },
-        "type": "n8n-nodes-base.n8n",
-        "typeVersion": 1,
-        "position": [
-          208,
-          0
-        ],
-        "id": "164460f1-260e-4aa7-85e4-02d75973f56e",
-        "name": "Create a credential",
-        "credentials": {
-          "n8nApi": {
-            "id": "wZ0Dv7o29bwVycJz",
-            "name": "n8n account 7"
-          }
-        }
-      }
-    ],
-    "connections": {
-      "When Executed by Another Workflow": {
-        "main": [
-          [
-            {
-              "node": "Create a credential",
-              "type": "main",
-              "index": 0
-            }
-          ]
-        ]
-      }
-    },
-    "authors": "Illia Shuklin",
-    "name": null,
-    "description": null,
-    "autosaved": false,
-    "workflowPublishHistory": [
-      {
-        "createdAt": "2026-04-27T15:13:35.996Z",
-        "id": 3123,
-        "workflowId": "7Z7B436uKfQ1Lhqc",
-        "versionId": "972260f4-a9ae-4636-bd4d-d7f6a8328309",
-        "event": "activated",
-        "userId": "7552bc39-732c-4660-a223-29e49d86f0a6"
-      },
-      {
-        "createdAt": "2026-04-27T15:14:15.712Z",
-        "id": 3127,
-        "workflowId": "7Z7B436uKfQ1Lhqc",
-        "versionId": "972260f4-a9ae-4636-bd4d-d7f6a8328309",
-        "event": "activated",
-        "userId": "7552bc39-732c-4660-a223-29e49d86f0a6"
-      },
-      {
-        "createdAt": "2026-04-27T15:14:09.678Z",
-        "id": 3124,
-        "workflowId": "7Z7B436uKfQ1Lhqc",
-        "versionId": "972260f4-a9ae-4636-bd4d-d7f6a8328309",
-        "event": "deactivated",
-        "userId": "7552bc39-732c-4660-a223-29e49d86f0a6"
-      }
-    ]
-  }
+  ]
 }
