@@ -1,0 +1,32 @@
+{
+  "name": "abc. wrklf1",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d4086583-8061-4072-8d1d-fc0c5be26014",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "connections": {},
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "git"
+    }
+  ],
+  "active": true,
+  "pinData": {}
+}
