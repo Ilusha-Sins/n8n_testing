@@ -1,5 +1,5 @@
 {
-  "name": "zxc. wrkflw2",
+  "name": "zxc. wrkflw",
   "nodes": [
     {
       "parameters": {
@@ -11,7 +11,7 @@
         0,
         0
       ],
-      "id": "38c2fa93-33a2-4f55-a577-780579676126",
+      "id": "7c293aa2-16a2-4bcf-bdcb-20775a7ff70a",
       "name": "When Executed by Another Workflow"
     },
     {
@@ -24,7 +24,7 @@
         208,
         0
       ],
-      "id": "88911ed6-ce77-43d9-a905-20db952967a4",
+      "id": "f2998ad8-7e48-4bfd-910e-d0aadc4eab13",
       "name": "Code in JavaScript"
     }
   ],
@@ -46,11 +46,11 @@
     "binaryMode": "separate"
   },
   "staticData": null,
+  "pinData": {},
   "tags": [
     {
       "name": "git"
     }
   ],
-  "active": true,
-  "pinData": {}
+  "active": true
 }
