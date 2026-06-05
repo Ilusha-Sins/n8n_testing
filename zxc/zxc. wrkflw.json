@@ -42,6 +42,19 @@
       ],
       "id": "f778abb989e78becd6878189ede7d00dd6da3f50",
       "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        624,
+        0
+      ],
+      "id": "b818d38e10b73da7184a464696db7f3f412d823f",
+      "name": "Code in JavaScript2"
     }
   ],
   "connections": {
@@ -61,6 +74,17 @@
         [
           {
             "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript2",
             "type": "main",
             "index": 0
           }
