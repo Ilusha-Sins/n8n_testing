@@ -1,0 +1,72 @@
+{
+  "id": "e1cafe0cd6134b02762551402d6b163e1e1cfd11",
+  "name": "tec. mainflow",
+  "active": false,
+  "isArchived": false,
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f11f712abf2cb320c694468edd91bfe127c30416",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "willBeChangedAfterPull",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/willBeChangedAfterPull",
+          "cachedResultName": "tec. subflow"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "117e664cbabf2d3ec4594146407169b39388b659",
+      "name": "Call 'tec. subflow'"
+    }
+  ],
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Call 'tec. subflow'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "id": "46f1a0bd5592a2f9244ca321b129902a06b53e03",
+      "name": "git"
+    }
+  ]
+}
